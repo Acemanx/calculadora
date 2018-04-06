@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="jquery-3.2.1.min.js"></script>
+</head>
+<body>
+	<input id="btnSumar" value="Sumar" type="button" onclick="sumar()"></input>
+</body>
+</html>
+<script type="text/javascript">
+	function sumar(){
+	$("#btnSumar").click(function () {
+
+        $.ajax({
+                url: 'http://localhost:3977/api/misuma',
+                type: 'POST',
+                async: true,
+                dataType: "json",
+                data: {
+                	"num1": 3 , "num2": 3
+                },
+                error: function (response, status, error) {
+                    console.log(error);
+                },
+                success: function (respuesta) {
+                	alert(respuesta.resultado);
+                   // Respuesta exitosa
+
+                },
+                beforeSend: function () {
+                    console.log("Se enviara");
+                },
+                complete: function () {
+                    console.log("Termino");
+                }
+            });
+        });
+}
+</script>
